@@ -22,6 +22,12 @@ class BungeePermsHandler implements IPermissionsHandler
     }
 
     @Override
+    public boolean tryProvider()
+    {
+    	return true;
+    }
+
+    @Override
     public String getGroup(Player player)
     {
         User u = perms.getPermissionsManager().getUser(player.getName());

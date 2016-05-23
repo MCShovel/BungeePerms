@@ -109,9 +109,9 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.9.2-SNAPSHOT</version>
+            <version>1.9-SNAPSHOT</version>
             <scope>system</scope>
-            <systemPath>/opt/msm/src/spigot/spigot-1.9.2.jar</systemPath>
+            <systemPath>/opt/msm/src/spigot/spigot.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.sk89q</groupId>

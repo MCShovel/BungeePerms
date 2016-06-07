@@ -117,6 +117,8 @@
             <groupId>com.sk89q</groupId>
             <artifactId>worldedit</artifactId>
             <version>5.6.2</version>
+            <scope>system</scope>
+            <systemPath>/opt/msm/plugins/worldedit-bukkit/worldedit-bukkit.jar</systemPath>
         </dependency>        
         <dependency>
             <groupId>net.milkbowl.vault</groupId>

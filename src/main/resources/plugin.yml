@@ -1,6 +1,6 @@
 name: BungeePerms
 main: net.alpenblock.bungeeperms.platform.bukkit.BukkitPlugin
-version: '${build.fullversion.resource}'
+version: '1.0'
 author: wea_ondara
 load: startup
 

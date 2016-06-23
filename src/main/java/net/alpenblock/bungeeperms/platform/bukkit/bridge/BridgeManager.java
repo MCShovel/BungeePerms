@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import net.alpenblock.bungeeperms.platform.Sender;
 import net.alpenblock.bungeeperms.platform.bukkit.BukkitPlugin;
-import net.alpenblock.bungeeperms.platform.bukkit.bridge.bridges.essentials.EssentialsBridge;
 import net.alpenblock.bungeeperms.platform.bukkit.bridge.bridges.vault.VaultBridge;
 import net.alpenblock.bungeeperms.platform.bukkit.bridge.bridges.worldedit.WorldEditBridge;
 import org.bukkit.Bukkit;
@@ -38,7 +37,6 @@ public class BridgeManager implements Listener
 
         brigdesmap.put(WorldEditBridge.class, "com.sk89q.worldedit.bukkit.WorldEditPlugin");
         brigdesmap.put(VaultBridge.class, "net.milkbowl.vault.Vault");
-        brigdesmap.put(EssentialsBridge.class, "com.earth2me.essentials.Essentials");
 
         for (Map.Entry<Class<? extends Bridge>, String> entry : brigdesmap.entrySet())
         {

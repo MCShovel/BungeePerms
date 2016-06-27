@@ -6,10 +6,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Level;
+
 import lombok.Getter;
 import net.alpenblock.bungeeperms.BungeePerms;
 import net.alpenblock.bungeeperms.Color;
 import net.alpenblock.bungeeperms.Config;
+import net.alpenblock.bungeeperms.Lang;
 import net.alpenblock.bungeeperms.Statics;
 import net.alpenblock.bungeeperms.platform.MessageEncoder;
 import net.alpenblock.bungeeperms.platform.bukkit.bridge.BridgeManager;
@@ -24,9 +27,13 @@ import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.messaging.PluginMessageListener;
+
+import com.google.common.io.ByteArrayDataInput;
+import com.google.common.io.ByteStreams;
 
 @Getter
-public class BukkitPlugin extends JavaPlugin implements PlatformPlugin
+public class BukkitPlugin extends JavaPlugin implements PlatformPlugin, PluginMessageListener
 {
 
     private static final double MILLI2TICK = 20F / 1000;
@@ -85,6 +92,8 @@ public class BukkitPlugin extends JavaPlugin implements PlatformPlugin
     {
         Bukkit.getMessenger().registerIncomingPluginChannel(this, BungeePerms.CHANNEL, listener);
         Bukkit.getMessenger().registerOutgoingPluginChannel(this, BungeePerms.CHANNEL);
+        Bukkit.getMessenger().registerIncomingPluginChannel(this, "BungeeCord", this);
+        Bukkit.getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         bungeeperms.enable();
         bridge.enable();
     }
@@ -96,7 +105,31 @@ public class BukkitPlugin extends JavaPlugin implements PlatformPlugin
         bungeeperms.disable();
         Bukkit.getMessenger().unregisterIncomingPluginChannel(this, BungeePerms.CHANNEL, listener);
         Bukkit.getMessenger().unregisterOutgoingPluginChannel(this, BungeePerms.CHANNEL);
+        Bukkit.getMessenger().unregisterIncomingPluginChannel(this, "BungeeCord", this);
+        Bukkit.getMessenger().unregisterOutgoingPluginChannel(this, "BungeeCord");
     }
+    
+    public void syncServerName(Player player) {
+    	new GetBungeeServerName(this, player).runAfter(20);
+    }
+
+    @Override
+    public void onPluginMessageReceived(String channel, Player player, byte[] message) {
+		if (!channel.equals("BungeeCord")) {
+			return;
+		}
+		ByteArrayDataInput in = ByteStreams.newDataInput(message);
+		String subchannel = in.readUTF();
+
+		if (subchannel.equals("GetServer")) {
+			String name = in.readUTF();
+			if (name != null) {
+				conf.servername = name;
+                BungeePerms.getLogger().info("[BungeePerms] server name: " + name);
+			}
+		}
+	}
+
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)

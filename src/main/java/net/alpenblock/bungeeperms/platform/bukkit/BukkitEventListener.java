@@ -96,6 +96,10 @@ public class BukkitEventListener implements Listener, EventListener, PluginMessa
     {
         String playername = e.getPlayer().getName();
         UUID uuid = null;
+        
+        if ("*".equalsIgnoreCase(((BukkitConfig)config).getServername())) {
+        	BukkitPlugin.getInstance().syncServerName(e.getPlayer());
+        }
 
         if (config.isUseUUIDs())
         {

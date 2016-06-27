@@ -8,7 +8,7 @@ import net.alpenblock.bungeeperms.Config;
 public class BukkitConfig extends BPConfig
 {
 
-    private String servername;
+    String servername;
     private boolean allowops;
     private boolean superpermscompat;
     

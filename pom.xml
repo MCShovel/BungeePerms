@@ -62,7 +62,7 @@
             <artifactId>bungeecord</artifactId>
             <version>1.9-SNAPSHOT</version>
             <scope>system</scope>
-            <systemPath>/opt/msm/src/bungeecord/bootstrap/target/BungeeCord.jar</systemPath>
+            <systemPath>${basedir}/../bungeecord/bootstrap/target/BungeeCord.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -79,21 +79,21 @@
             <artifactId>spigot-api</artifactId>
             <version>1.9-SNAPSHOT</version>
             <scope>system</scope>
-            <systemPath>/opt/msm/src/spigot/spigot.jar</systemPath>
+            <systemPath>${basedir}/../spigot/spigot.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.sk89q</groupId>
             <artifactId>worldedit</artifactId>
             <version>5.6.2</version>
             <scope>system</scope>
-            <systemPath>/opt/msm/plugins/worldedit-bukkit/worldedit-bukkit.jar</systemPath>
+            <systemPath>${basedir}/../../plugins/worldedit-bukkit/worldedit-bukkit.jar</systemPath>
         </dependency>        
         <dependency>
             <groupId>net.milkbowl.vault</groupId>
             <artifactId>Vault</artifactId>
             <version>1.2.32</version>
             <scope>system</scope>
-            <systemPath>/opt/msm/plugins/Vault/Vault.jar</systemPath>
+            <systemPath>${basedir}/../../plugins/Vault/Vault.jar</systemPath>
         </dependency>
     </dependencies>
 </project>

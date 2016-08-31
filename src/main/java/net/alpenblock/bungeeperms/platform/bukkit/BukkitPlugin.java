@@ -123,7 +123,7 @@ public class BukkitPlugin extends JavaPlugin implements PlatformPlugin, PluginMe
 
 		if (subchannel.equals("GetServer")) {
 			String name = in.readUTF();
-			if (name != null) {
+			if (name != null && !name.equals(conf.servername)) {
 				conf.servername = name;
                 BungeePerms.getLogger().info("[BungeePerms] server name: " + name);
 			}
